@@ -10,4 +10,10 @@ class Post extends Model
     use HasFactory;
     protected $table = "posts";
     protected $guarded = false;
+
+    public function Category(){
+
+        return $this->belongsTo(Category::class,'category_id','id' );
+
+    }
 }
