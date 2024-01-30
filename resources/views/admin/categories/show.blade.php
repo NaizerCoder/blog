@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Категории</h1>
+                        <h1 class="m-0">Просмотр категории "{{$category->title}}"</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -33,14 +33,15 @@
                                         <th>Название</th>
                                     </tr>
                                     </thead>
+
                                     <tbody>
-                                    @foreach($categories as $category)
+
                                         <tr>
                                             <td>{{$category->id}}</td>
                                             <td>{{$category->title}}</td>
-                                            <td><a href="{{route('admin.category.show',$category->id)}}" <i class="fas fa-truck-moving"></i></a></td>
+
                                         </tr>
-                                    @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
@@ -49,13 +50,9 @@
 
                     </div>
 
-                <!-- /.row -->
+                    <!-- /.row -->
                 </div>
-                <div class="row">
-                    <div class="col-1 mb-3">
-                        <a href="{{route('admin.category.create')}}" class="btn btn-block btn-outline-primary">Добавить</a>
-                    </div>
-                </div>
+
             </div>
 
         </section>
@@ -63,3 +60,4 @@
         <!-- /.content -->
     </div>
 @endsection
+

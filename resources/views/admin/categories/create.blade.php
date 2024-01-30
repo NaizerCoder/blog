@@ -27,7 +27,7 @@
 
                     <form action="{{route('admin.category.store')}}" method="POST" class="w-25">
                         @csrf
-                        <div class="form-group mb-0">
+                        <div class="form-group mb-3">
                             <input type="text" class="form-control" name="title" placeholder="Название категории">
                         </div>
                         @error('title')

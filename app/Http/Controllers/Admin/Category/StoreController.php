@@ -7,7 +7,7 @@ use App\Http\Requests\Admin\Category\StoreRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class StoreContoller extends Controller
+class StoreController extends Controller
 {
     public function __invoke(StoreRequest $request)
     {
