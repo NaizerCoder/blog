@@ -31,6 +31,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Название</th>
+                                        <td colspan="3" class="text-center">Действия</td>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -38,7 +39,24 @@
                                         <tr>
                                             <td>{{$category->id}}</td>
                                             <td>{{$category->title}}</td>
-                                            <td><a href="{{route('admin.category.show',$category->id)}}" <i class="fas fa-truck-moving"></i></a></td>
+                                            <td><a href="{{route('admin.category.show',$category->id)}}" <i
+                                                    class="fas fa-truck-moving"></i></a></td>
+                                            <td><a href="{{route('admin.category.edit',$category->id)}}" <i
+                                                    class="fas fa-pencil-alt text-success"></i></a></td>
+                                            <td>
+
+                                                <div>
+                                                    <form action="{{ route('admin.category.delete',$category->id) }}"
+                                                          method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type='submit' class="fas fa-trash-alt border-0 bg-transparent text-danger"></button>
+
+                                                    </form>
+                                                </div>
+
+
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -49,11 +67,12 @@
 
                     </div>
 
-                <!-- /.row -->
+                    <!-- /.row -->
                 </div>
                 <div class="row">
                     <div class="col-1 mb-3">
-                        <a href="{{route('admin.category.create')}}" class="btn btn-block btn-outline-primary">Добавить</a>
+                        <a href="{{route('admin.category.create')}}"
+                           class="btn btn-block btn-outline-primary">Добавить</a>
                     </div>
                 </div>
             </div>
