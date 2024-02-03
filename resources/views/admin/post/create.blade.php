@@ -25,15 +25,60 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
 
-                    <form action="{{route('admin.post.store')}}" method="POST" class="w-25">
+                    <form action="{{route('admin.post.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
-                            <input type="text" class="form-control" name="title" placeholder="Название категории">
+                            <input type="text" class="form-control" name="title" value="{{old('title')}}" placeholder="Название поста">
                         </div>
-                        @error('title')
-                            <div class="text-danger mb-3">{{ $message }}</div>
+                            @error('title')
+                                <div class="text-danger mb-3">{{ $message }}</div>
+                            @enderror
+
+                        <div class="form-group" class="w-25">
+                            <textarea id="summernote" name="content">{{ old('content') }}</textarea>
+                        </div>
+                            @error('content')
+                                <div class="text-danger mb-3">{{ $message }}</div>
+                            @enderror
+
+                        <div class="form-group w-25">
+                            <div class="text-bold">Превью</div>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="preview_image">
+                                    <label class="custom-file-label" for="exampleInputFile">Выбрать файл</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Загрузить</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        @error('preview_image')
+                        <div class="text-danger mb-3">{{ $message }}</div>
                         @enderror
-                        <button type="submit" class="btn btn-success">Добавить</button>
+
+
+                        <div class="form-group w-25">
+                            <div class="text-bold">Главное изображение</div>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="main_image">
+                                    <label class="custom-file-label" for="exampleInputFile">Выбрать файл</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Загрузить</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        @error('main_image')
+                        <div class="text-danger mb-3">{{ $message }}</div>
+                        @enderror
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Добавить</button>
+                        </div>
                     </form>
                 </div>
 

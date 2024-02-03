@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Тэги</h1>
+                        <h1 class="m-0">Посты</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -38,14 +38,14 @@
 
                                         @foreach($posts as $post)
                                             <tr>
-                                                <td>{{post->id}}</td>
-                                                <td>{{post->title}}</td>
+                                                <td>{{$post->id}}</td>
+                                                <td>{{$post->title}}</td>
                                                 <td><a href="{{route('admin.post.show',$post->id)}}" <i class="fas fa-truck-moving"></i></a></td>
                                                 <td><a href="{{route('admin.post.edit',$post->id)}}" <i class="fas fa-pencil-alt text-success"></i></a></td>
                                                 <td>
 
                                                     <div>
-                                                        <form action="{{ route('admin.post.delete',$tag->id) }}"
+                                                        <form action="{{ route('admin.post.delete',$post->id) }}"
                                                               method="POST">
                                                             @csrf
                                                             @method('delete')

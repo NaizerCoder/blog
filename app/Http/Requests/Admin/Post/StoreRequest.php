@@ -23,12 +23,20 @@ class StoreRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
+            'content' => 'required|string',
+            'main_image' => 'required|file',
+            'preview_image' => 'required|file',
         ];
     }
 
     public function messages()
     {
         return ['title.required' => 'Поле пустое',
+                'content.required' => 'Поле не может быть пустым',
+                'main_image.required' => 'Файл не выбран',
+                'main_image.file' => 'Добавьте файл',
+                'preview_image.required' => 'Файл не выбран',
+                'preview_image.file' => 'Добавьте файл',
 
         ];
     }
