@@ -49,7 +49,7 @@
                                     <label class="custom-file-label" for="exampleInputFile">Выбрать файл</label>
                                 </div>
                                 <div class="input-group-append">
-                                    <span class="input-group-text">Загрузить</span>
+
                                 </div>
                             </div>
                         </div>
@@ -75,6 +75,21 @@
                         @error('main_image')
                         <div class="text-danger mb-3">{{ $message }}</div>
                         @enderror
+
+                        <div class="col-sm-6">
+                            <!-- select -->
+                            <div class="form-group w-25">
+                                <label>Категория</label>
+                                <select class="form-select">
+                                    @foreach($categories as $category)
+
+                                        <option value="{{$category->id}}">{{$category->title}}</option>
+
+                                    @endforeach
+
+                                </select>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Добавить</button>
