@@ -80,10 +80,12 @@
                             <!-- select -->
                             <div class="form-group w-25">
                                 <label>Категория</label>
-                                <select class="form-select">
+                                <select class="form-select" name="category_id">
                                     @foreach($categories as $category)
 
-                                        <option value="{{$category->id}}">{{$category->title}}</option>
+                                        <option value="{{$category->id}}"
+                                            {{ $category->id == old('category_id') ? ' selected' : "" }}
+                                        > {{ $category->title }}</option>
 
                                     @endforeach
 
