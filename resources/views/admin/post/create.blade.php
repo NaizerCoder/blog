@@ -28,18 +28,19 @@
                     <form action="{{route('admin.post.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
-                            <input type="text" class="form-control" name="title" value="{{old('title')}}" placeholder="Название поста">
+                            <input type="text" class="form-control" name="title" value="{{old('title')}}"
+                                   placeholder="Название поста">
                         </div>
-                            @error('title')
-                                <div class="text-danger mb-3">{{ $message }}</div>
-                            @enderror
+                        @error('title')
+                        <div class="text-danger mb-3">{{ $message }}</div>
+                        @enderror
 
                         <div class="form-group" class="w-25">
                             <textarea id="summernote" name="content">{{ old('content') }}</textarea>
                         </div>
-                            @error('content')
-                                <div class="text-danger mb-3">{{ $message }}</div>
-                            @enderror
+                        @error('content')
+                        <div class="text-danger mb-3">{{ $message }}</div>
+                        @enderror
 
                         <div class="form-group w-25">
                             <div class="text-bold">Превью</div>
@@ -76,22 +77,32 @@
                         <div class="text-danger mb-3">{{ $message }}</div>
                         @enderror
 
-                        <div class="col-sm-6">
-                            <!-- select -->
-                            <div class="form-group w-25">
-                                <label>Категория</label>
-                                <select class="form-select" name="category_id">
-                                    @foreach($categories as $category)
+                        <!-- select Category -->
+                        <div class="form-group w-25">
+                            <div class="text-bold">Категория</div>
+                            <select class="form-select" name="category_id">
+                                @foreach($categories as $category)
 
-                                        <option value="{{$category->id}}"
-                                            {{ $category->id == old('category_id') ? ' selected' : "" }}
-                                        > {{ $category->title }}</option>
+                                    <option value="{{$category->id}}"
+                                        {{ $category->id == old('category_id') ? ' selected' : "" }}
+                                    > {{ $category->title }}</option>
+                                @endforeach
 
-                                    @endforeach
-
-                                </select>
-                            </div>
+                            </select>
                         </div>
+
+                        <!-- select Tags -->
+                        <div class="form-group">
+                            <div class="text-bold">Тэги</div>
+                            <select class="select2" name="tags[]" multiple="multiple" data-placeholder="Задайте тэг" style="width: 100%;">
+                                @foreach($tags as $tag)
+                                    <option value="{{$tag->id}}"
+                                        {{ is_array( old('tags') ) && in_array( $tag->id,old('tags') )  ? ' selected' : '' }}
+                                    >{{$tag->title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Добавить</button>
