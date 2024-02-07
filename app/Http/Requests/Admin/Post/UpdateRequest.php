@@ -22,14 +22,26 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required',
+            'title' => 'required|string',
+            'content' => 'required|string',
+            'main_image' => 'nullable|file',
+            'preview_image' => 'nullable|file',
+            'category_id' => 'required|integer|exists:categories,id',
+            'tags' => 'nullable|array',
+            'tags.*' => 'nullable|integer|exists:tags,id',
         ];
     }
 
     public function messages()
     {
         return [
-            'title.required' => 'обязательно для заполнения',
+            'title.required' => 'Поле пустое',
+            'content.required' => 'Поле не может быть пустым',
+            'main_image.required' => 'Файл не выбран',
+            'main_image.file' => 'Добавьте файл',
+            'preview_image.required' => 'Файл не выбран',
+            'preview_image.file' => 'Добавьте файл',
+
         ];
     }
 }

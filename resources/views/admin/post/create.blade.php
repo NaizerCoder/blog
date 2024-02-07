@@ -42,7 +42,7 @@
                         <div class="text-danger mb-3">{{ $message }}</div>
                         @enderror
 
-                        <div class="form-group w-25">
+                        <div class="form-group w-50">
                             <div class="text-bold">Превью</div>
                             <div class="input-group">
                                 <div class="custom-file">
@@ -60,7 +60,7 @@
                         @enderror
 
 
-                        <div class="form-group w-25">
+                        <div class="form-group w-75">
                             <div class="text-bold">Главное изображение</div>
                             <div class="input-group">
                                 <div class="custom-file">
@@ -80,7 +80,7 @@
                         <!-- select Category -->
                         <div class="form-group w-25">
                             <div class="text-bold">Категория</div>
-                            <select class="form-select" name="category_id">
+                            <select class="form-control" name="category_id">
                                 @foreach($categories as $category)
 
                                     <option value="{{$category->id}}"

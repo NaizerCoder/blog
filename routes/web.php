@@ -32,10 +32,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix'=> 'admin'], 
         Route::get('/', 'IndexController')->name('admin.post.index');
         Route::get('/create', 'CreateController')->name('admin.post.create');
         Route::post('/', 'StoreController')->name('admin.post.store');
-        Route::get('/{category}','ShowController')->name('admin.post.show');
-        Route::get('/{category}/edit','EditController')->name('admin.post.edit');
-        Route::patch('/{category}','UpdateController')->name('admin.post.update');
-        Route::delete('/{category}','DestroyController')->name('admin.post.delete');
+        Route::get('/{post}','ShowController')->name('admin.post.show');
+        Route::get('/{post}/edit','EditController')->name('admin.post.edit');
+        Route::patch('/{post}','UpdateController')->name('admin.post.update');
+        Route::delete('/{post}','DestroyController')->name('admin.post.delete');
     });
 
     Route::group(['namespace' => 'Category', 'prefix'=>'category'],function (){

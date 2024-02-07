@@ -34,7 +34,8 @@ class StoreRequest extends FormRequest
 
     public function messages()
     {
-        return ['title.required' => 'Поле пустое',
+        return [
+                'title.required' => 'Поле пустое',
                 'content.required' => 'Поле не может быть пустым',
                 'main_image.required' => 'Файл не выбран',
                 'main_image.file' => 'Добавьте файл',
