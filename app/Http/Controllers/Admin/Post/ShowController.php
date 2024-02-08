@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Post;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tag;
+use App\Models\Post;
 
 class ShowController extends Controller
 {
