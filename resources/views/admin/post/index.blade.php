@@ -40,7 +40,7 @@
                                             <tr>
                                                 <td>{{$post->id}}</td>
                                                 <td>{{$post->title}}</td>
-                                                <td><a href="{{route('admin.post.show',$post->id)}}" <i class="fas fa-truck-moving"></i></a></td>
+                                                <td><a href="{{route('admin.post.show',$post->id)}}" <i class="far fa-file-alt"></i></a></td>
                                                 <td><a href="{{route('admin.post.edit',$post->id)}}" <i class="fas fa-pencil-alt text-success"></i></a></td>
                                                 <td>
 

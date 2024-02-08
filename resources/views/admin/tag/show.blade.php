@@ -7,7 +7,7 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 d-flex align-items-center">
                         <h1 class="mr-10">
-                            Просмотр категории "{{$tag->title}}"
+                            Просмотр тэга "{{$tag->title}}"
                         </h1>
                         <a href="{{route('admin.tag.edit',$tag->id)}}" <i class="fas fa-pencil-alt text-success"></i> </a>
                         <form action="{{ route('admin.tag.delete',$tag->id) }}" method="POST">

@@ -39,7 +39,7 @@
                                         <tr>
                                             <td>{{$tag->id}}</td>
                                             <td>{{$tag->title}}</td>
-                                            <td><a href="{{route('admin.tag.show',$tag->id)}}" <i class="fas fa-truck-moving"></i></a></td>
+                                            <td><a href="{{route('admin.tag.show',$tag->id)}}" <i class="far fa-file-alt"></i></a></td>
                                             <td><a href="{{route('admin.tag.edit',$tag->id)}}" <i class="fas fa-pencil-alt text-success"></i></a></td>
                                             <td>
 
