@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Models\Post;
+use App\Personal\RandomName;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,14 +23,14 @@ class PostService
                 $tags = $data['tags'];
                 unset($data['tags']);
             }
+            $extension = $request->file('main_image')->extension();
+            $name_main_img = RandomName::get(5).".".$extension;
+            $name_preview_img = RandomName::get(5).".".$extension;
 
-            //$file = $request->file($data['main_image']);
+            //dump($request->file('main_image')->getClientOriginalName());
 
-            dump($request->file('main_image')->getClientOriginalName());
-            dd($request->file('main_image')->extension());
-            dd($data['main_image']);
-
-            //$data['main_image']  = Storage::putFileAs('images', new File($data['main_image']), 'photo.jpg');
+            $data['main_image']  = Storage::disk('public')->putFileAs('images', new File($data['main_image']), $name_main_img);
+            $data['preview_image']  = Storage::disk('public')->putFileAs('images', new File($data['main_image']), $name_preview_img);
             //$data['main_image'] = Storage::disk('public')->put("/images", $data['main_image']);
             //$data['preview_image'] = Storage::disk('public')->put("/images", $data['preview_image']);
 
@@ -61,6 +62,7 @@ class PostService
                 $tags = $data['tags'];
                 unset($data['tags']);
             }
+            else $tags = [];
 
             if (isset($data['main_image'])) {
 
@@ -72,9 +74,7 @@ class PostService
                 $data['preview_image'] = Storage::disk('public')->put("/images", $data['preview_image']);
 
             $post->update($data);
-
-            if (isset($tags))
-                $post->tags()->sync($tags);
+            $post->tags()->sync($tags); //ещё есть detach
 
             DB::commit();
 

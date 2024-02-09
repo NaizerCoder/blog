@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
             'title' => 'required|string',
             'content' => 'required|string',
             'main_image' => 'required|file',
-            'preview_image' => 'nullable',
+            'preview_image' => 'required|file',
             'category_id' => 'required|integer|exists:categories,id',
             'tags' => 'nullable|array',
             'tags.*' => 'nullable|integer|exists:tags,id',
@@ -39,7 +39,7 @@ class StoreRequest extends FormRequest
                 'content.required' => 'Поле не может быть пустым',
                 'main_image.required' => 'Файл не выбран',
                 'main_image.file' => 'Добавьте файл',
-                //'preview_image.required' => 'Файл не выбран',
+                'preview_image.required' => 'Файл не выбран',
                 'preview_image.file' => 'Добавьте файл',
 
         ];

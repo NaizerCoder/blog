@@ -23,7 +23,7 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
-                <div class="row">
+                <div class="row w-50">
 
                     <form action="{{route('admin.post.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf

@@ -11,9 +11,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        // dump( RandomName::get(5));
-        //dump( RandomName::get(5));
-        //dd();
+
         $posts = Post::all();
         return view('admin.post.index',compact('posts'));
 
