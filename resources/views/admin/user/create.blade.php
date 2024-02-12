@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Добавить категорию</h1>
+                        <h1 class="m-0">Добавить пользователя</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -28,11 +28,39 @@
                     <form action="{{route('admin.user.store')}}" method="POST" class="w-25">
                         @csrf
                         <div class="form-group mb-3">
-                            <input type="text" class="form-control" name="title" placeholder="Название категории">
+                            <input type="text" class="form-control" name="name" placeholder="Имя пользователя">
                         </div>
-                        @error('title')
-                            <div class="text-danger mb-3">{{ $message }}</div>
+                        @error('name')
+                        <div class="text-danger mb-3">{{ $message }}</div>
                         @enderror
+
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" name="email" placeholder="Почта">
+                        </div>
+                        @error('email')
+                        <div class="text-danger mb-3">{{ $message }}</div>
+                        @enderror
+
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" name="password" placeholder="Пароль">
+                        </div>
+                        @error('password')
+                        <div class="text-danger mb-3">{{ $message }}</div>
+                        @enderror
+
+                        <!-- select Roles -->
+                        <div class="form-group">
+                            <div class="text-bold">Выбрать роль</div>
+                            <select class="form-control" name="role">
+                                @foreach($roles as $id => $role)
+
+                                    <option value="{{$id}}"
+                                        {{ $id == old('role') ? ' selected' : "" }}
+                                    > {{ $role }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <button type="submit" class="btn btn-success">Добавить</button>
                     </form>
                 </div>

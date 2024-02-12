@@ -7,9 +7,9 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 d-flex align-items-center">
                         <h1 class="mr-10">
-                            Просмотр категории "{{$post->name}}"
+                            Просмотр пользователя "{{$user->name}}"
                         </h1>
-                        <a href="{{route('admin.category.edit',$category->id)}}" <i
+                        <a href="{{route('admin.user.edit',$user->id)}}" <i
                             class="fas fa-pencil-alt text-success"></i></a>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
@@ -27,7 +27,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-4">
                         <div class="card">
                             <div class="card-body table-responsive p-0">
                                 <table class="table table-hover text-nowrap">
@@ -35,14 +35,18 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Название</th>
+                                        <th>Почта</th>
+                                        <th>Роль</th>
                                     </tr>
                                     </thead>
 
                                     <tbody>
 
                                         <tr>
-                                            <td>{{$post->id}}</td>
-                                            <td>{{$post->name}}</td>
+                                            <td>{{$user->id}}</td>
+                                            <td>{{$user->name}}</td>
+                                            <td>{{$user->email}}</td>
+                                            <td>{{$roles[$user->role]}}</td>
 
                                         </tr>
 

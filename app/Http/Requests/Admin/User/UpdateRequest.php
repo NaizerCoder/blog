@@ -22,14 +22,18 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required',
+            'name' => 'required|string',
+            'email' => 'required|string|email|unique:users,email,'.$this->user->id,
+            'role' => 'required|integer',
         ];
     }
 
     public function messages()
     {
         return [
-            'title.required' => 'обязательно для заполнения',
+            'name.required' => 'Поле пустое',
+            'email.required' => 'Поле пустое',
+            'email.email' => 'Задайте корректную почту!',
         ];
     }
 }

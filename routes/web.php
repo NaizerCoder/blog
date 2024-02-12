@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Auth::routes();
 
 Route::group(['namespace' => 'App\Http\Controllers\Main'], function() {
 
@@ -74,8 +75,4 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix'=> 'admin'], 
 
 
 });
-
-
-Auth::routes();
-
 

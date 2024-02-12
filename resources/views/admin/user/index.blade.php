@@ -30,8 +30,9 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Название</th>
-                                        <td colspan="3" class="text-center">Действия</td>
+                                        <th>Имя</th>
+                                        <th>Почта</th>
+                                        <td colspan="2" class="text-center">Действия</td>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -39,15 +40,15 @@
                                         <tr>
                                             <td>{{$user->id}}</td>
                                             <td>{{$user->name}}</td>
-                                            <td><a href="{{route('admin.user.show',$post->id)}}"
+                                            <td><a href="{{route('admin.user.show',$user->id)}}"
                                                 <i class="far fa-file-alt"></i>
                                             </td>
-                                            <td><a href="{{route('admin.user.edit',$post>id)}}" <i
+                                            <td><a href="{{route('admin.user.edit',$user->id)}}" <i
                                                     class="fas fa-pencil-alt text-success"></i></a></td>
                                             <td>
 
                                                 <div>
-                                                    <form action="{{ route('admin.user.delete',$post->id) }}"
+                                                    <form action="{{ route('admin.user.delete',$user->id) }}"
                                                           method="POST">
                                                         @csrf
                                                         @method('delete')
