@@ -14,14 +14,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Auth::routes();
 
 Route::group(['namespace' => 'App\Http\Controllers\Main'], function() {
 
     Route::get('/', IndexContoller::class);
 });
 
-Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix'=> 'admin', 'middleware' => ['auth','admin'] ], function() {
+Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix'=> 'admin', 'middleware' => ['auth','admin','verified'] ], function() {
 
     Route::group(['namespace' => 'Main'],function (){
 
@@ -72,7 +71,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix'=> 'admin', '
         Route::delete('/{user}','DestroyController')->name('admin.user.delete');
     });
 
-
-
 });
+
+Auth::routes(['verify' => true]);
 

@@ -38,11 +38,17 @@
                                     </thead>
                                     <tbody>
                                     @foreach($users as $user)
+
+                                        @php
+                                            if(empty($user->role)) $role = 0;
+                                            else $role = $user->role
+                                        @endphp
+
                                         <tr>
                                             <td>{{$user->id}}</td>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
-                                            <td>{{$roles[$user->role]}}</td>
+                                            <td>{{$role}}</td>
                                             <td><a href="{{route('admin.user.show',$user->id)}}"
                                                 <i class="far fa-file-alt"></i>
                                             </td>
