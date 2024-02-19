@@ -9,10 +9,8 @@
                         <h1 class="mr-10">
                             Просмотр категории "{{$post->title}}"
                         </h1>
-                        <a href="{{ route('admin.post.edit',$post->id) }}"
-                            <i class="fas fa-pencil-alt text-success">
-
-                            </i>
+                        <a href={{ route('admin.post.edit',$post->id) }}"
+                            <i class=" fas fa-pencil-alt text-success"></i>
                         </a>
                         <form action="{{ route('admin.post.delete',$post->id) }}" method="POST">
                             @csrf
@@ -22,8 +20,9 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.main.index')}}">Главная</a></li>
+                            <li class="breadcrumb-item active">Пользователи</li>
+                            <li class="breadcrumb-item active">{{$post->title}}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -50,19 +49,19 @@
 
                                     <tbody>
 
-                                        <tr>
-                                            <td>{{$post->id}}</td>
-                                            <td>{{$post->title}}</td>
-                                            <td>{{$post->category->title}}</td>
-                                            <td>
-                                                @foreach($post->tags as $tag)
-                                                    <div>{{$tag->title}}</div>
-                                                @endforeach
+                                    <tr>
+                                        <td>{{$post->id}}</td>
+                                        <td>{{$post->title}}</td>
+                                        <td>{{$post->category->title}}</td>
+                                        <td>
+                                            @foreach($post->tags as $tag)
+                                                <div>{{$tag->title}}</div>
+                                            @endforeach
 
-                                            </td>
+                                        </td>
 
 
-                                        </tr>
+                                    </tr>
 
                                     </tbody>
                                 </table>
