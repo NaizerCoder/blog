@@ -26,7 +26,32 @@
                     <div class="col-3">
                         <div class="card">
                             <div class="card-body table-responsive p-0">
-                                "Контент комментарии"
+
+                                <table class="table table-hover text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Комментарий</th>
+                                        <th>Пост</th>
+                                        <td colspan="3" class="text-center">Действия</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($comments as $comment)
+                                        <tr>
+                                            <td>{{$comment->id}}</td>
+                                            <td>{{$comment->message}}</td>
+                                            <td>{{$comment->message}}</td>
+
+
+
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+
                             </div>
                             <!-- /.card-body -->
                         </div>
