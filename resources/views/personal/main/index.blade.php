@@ -42,7 +42,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>{{$info['likes']}}</h3>
+                                <h3>{{$info['comments']}}</h3>
 
                                 <p>Комментарии</p>
                             </div>

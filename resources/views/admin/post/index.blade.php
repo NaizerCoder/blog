@@ -31,7 +31,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Название</th>
-                                        <td colspan="3" class="text-center">Действия</td>
+                                        <th colspan="3" class="text-center">Действия</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -53,7 +53,6 @@
 
                                                         </form>
                                                     </div>
-
 
                                                 </td>
                                             </tr>

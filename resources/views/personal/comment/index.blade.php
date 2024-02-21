@@ -23,30 +23,41 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-7">
                         <div class="card">
                             <div class="card-body table-responsive p-0">
 
                                 <table class="table table-hover text-nowrap">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Комментарий</th>
                                         <th>Пост</th>
-                                        <td colspan="3" class="text-center">Действия</td>
+                                        <td colspan="2" class="text-center">Действия</td>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($comments as $comment)
                                         <tr>
-                                            <td>{{$comment->id}}</td>
                                             <td>{{$comment->message}}</td>
-                                            <td>{{$comment->message}}</td>
-
-
-
-
+                                            <td>{{$comment->post->title}}</td>
+                                            <td>
+                                                <!-- Edit -->
+                                                <a href="{{route('personal.comment.edit',$comment->id)}}" <i
+                                                    class="fas fa-pencil-alt text-success"></i></a>
                                             </td>
+                                            <td>
+                                                <!-- Delete -->
+                                                <div>
+                                                    <form action="{{ route('personal.comment.delete',$comment->id) }}"
+                                                          method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type='submit' class="fas fa-trash-alt border-0 bg-transparent text-danger"></button>
+
+                                                    </form>
+                                                </div>
+                                            </td>
+
                                         </tr>
                                     @endforeach
                                     </tbody>

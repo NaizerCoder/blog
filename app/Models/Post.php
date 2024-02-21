@@ -23,4 +23,12 @@ class Post extends Model
 
         return $this->belongsToMany( Tag::class, 'post_tags','post_id','tag_id');
     }
+
+    /* Для информации по одному посту*/
+    public function comment(){
+
+        return $this->belongsToMany(User::class,'comments','post_id','user_id');
+    }
+
+
 }
