@@ -23,16 +23,16 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-7">
+                    <div class="col-7 border-dark">
                         <div class="card">
                             <div class="card-body table-responsive p-0">
 
-                                <table class="table table-hover text-nowrap">
+                                <table class="table table-hover text-nowrap table-bordered">
                                     <thead>
                                     <tr>
                                         <th>Комментарий</th>
                                         <th>Пост</th>
-                                        <td colspan="2" class="text-center">Действия</td>
+                                        <th colspan="2" class="text-center">Действия</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -40,7 +40,7 @@
                                         <tr>
                                             <td>{{$comment->message}}</td>
                                             <td>{{$comment->post->title}}</td>
-                                            <td>
+                                            <td class="text-right">
                                                 <!-- Edit -->
                                                 <a href="{{route('personal.comment.edit',$comment->id)}}" <i
                                                     class="fas fa-pencil-alt text-success"></i></a>
