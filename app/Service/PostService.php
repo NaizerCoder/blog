@@ -24,15 +24,15 @@ class PostService
                 unset($data['tags']);
             }
             $extension = $request->file('main_image')->extension();
-            $name_main_img = RandomName::get(5).".".$extension;
-            $name_preview_img = RandomName::get(5).".".$extension;
+            $name_main_img = RandomName::get(5) . "." . $extension;
+            $name_preview_img = RandomName::get(5) . "." . $extension;
 
-            //dump($request->file('main_image')->getClientOriginalName());
+            //dd($request->file('main_image')->getClientOriginalName());
 
-            $data['main_image']  = Storage::disk('public')->putFileAs('images', new File($data['main_image']), $name_main_img);
-            $data['preview_image']  = Storage::disk('public')->putFileAs('images', new File($data['main_image']), $name_preview_img);
+            $data['main_image'] = Storage::disk('img')->putFileAs('posts', new File($data['main_image']), "$name_main_img");
+            $data['preview_image'] = Storage::disk('img')->putFileAs('posts', new File($data['preview_image']), $name_preview_img);
+
             //$data['main_image'] = Storage::disk('public')->put("/images", $data['main_image']);
-            //$data['preview_image'] = Storage::disk('public')->put("/images", $data['preview_image']);
 
             $post = Post::firstOrCreate($data);
 
@@ -46,12 +46,14 @@ class PostService
         } catch (\Exception $exception) {
 
             DB::rollBack();
+            dd($exception->getMessage());
+
             abort('404');
         }
 
     }
 
-    public function update($post, $data)
+    public function update($request, $post, $data)
     {
 
         try {
@@ -61,17 +63,29 @@ class PostService
 
                 $tags = $data['tags'];
                 unset($data['tags']);
-            }
-            else $tags = [];
+            } else $tags = [];
 
             if (isset($data['main_image'])) {
 
-                Storage::disk('public')->delete("/images", $post->main_image);
-                $data['main_image'] = Storage::disk('public')->put("/images", $data['main_image']);
+                $extension = $request->file('main_image')->extension();
+                $name_main_img = RandomName::get(5) . "." . $extension;
+
+                Storage::disk('img')->delete("posts", $post->main_image);
+                $data['main_image'] = Storage::disk('img')->putFileAs('/posts', new File($data['main_image']), "$name_main_img");
+                //$data['main_image'] = Storage::disk('public')->put("/images", $data['main_image']);
 
             }
-            if (isset($data['preview_image']))
-                $data['preview_image'] = Storage::disk('public')->put("/images", $data['preview_image']);
+
+
+            if (isset($data['preview_image'])) {
+
+                $extension = $request->file('preview_image')->extension();
+                $name_preview_img = RandomName::get(5) . "." . $extension;
+
+                Storage::disk('img')->delete("posts", $post->preview_image);
+                $data['preview_image'] = Storage::disk('img')->putFileAs('/posts', new File($data['preview_image']), $name_preview_img);
+                //$data['preview_image'] = Storage::disk('public')->put("/images", $data['preview_image']);
+            }
 
             $post->update($data);
             $post->tags()->sync($tags); //ещё есть detach
@@ -81,6 +95,8 @@ class PostService
         } catch (\Exception $exception) {
 
             DB::rollBack();
+            dd($exception->getMessage());
+
             abort('500');
         }
 

@@ -4,28 +4,21 @@
 
         <section class="edica-landing-section edica-landing-blog pt-0">
             <div class="container">
-                <h4 class="edica-landing-section-subtitle" data-aos="fade-up">Blog posts</h4>
-                <h2 class="edica-landing-section-title" data-aos="fade-up">Check our app latest blog post <br> for more update.</h2>
+                <h4 class="edica-landing-section-subtitle" data-aos="fade-up">Список новостей</h4>
+                <h2 class="edica-landing-section-title" data-aos="fade-up">Главное сегодня</h2>
                 <div class="row">
-                    <div class="col-md-4 landing-blog-post" data-aos="fade-right">
-                        <img src="{{asset('assets/images/rectangle.png')}}" alt="blog post" class="blog-post-thumbnail">
-                        <p class="blog-post-category">Blog post</p>
-                        <h4 class="blog-post-title">Check our latest blog post for more update.</h4>
-                        <a href="#!" class="blog-post-link">Learn more</a>
-                    </div>
-                    <div class="col-md-4 landing-blog-post" data-aos="fade-up">
-                        <img src="{{asset('assets/images/rectangle-copy.png')}}" alt="blog post" class="blog-post-thumbnail">
-                        <p class="blog-post-category">Blog post</p>
-                        <h4 class="blog-post-title">Check our latest blog post for more update.</h4>
-                        <a href="#!" class="blog-post-link">Learn more</a>
-                    </div>
-                    <div class="col-md-4 landing-blog-post" data-aos="fade-left">
-                        <img src="{{asset('assets/images/rectangle-copy-2.png')}}" alt="blog post" class="blog-post-thumbnail">
-                        <p class="blog-post-category">Blog post</p>
-                        <h4 class="blog-post-title">Check our latest blog post for more update.</h4>
-                        <a href="#!" class="blog-post-link">Learn more</a>
-                    </div>
+
+                    @foreach($posts as $post)
+                        <div class="col-md-4 landing-blog-post" data-aos="fade-right">
+                            <img src="{{url('images/'. $post->main_image)}}" alt="blog post" class="blog-post-thumbnail w-75">
+                            <p class="blog-post-category">{{$post->title}}</p>
+                            <h4 class="blog-post-title">{{$post->category->title}}</h4>
+                            <a href="#!" class="blog-post-link">Learn more</a>
+                        </div>
+                    @endforeach
+
                 </div>
+                <div>{{ $posts->links() }}</div>
             </div>
         </section>
         <section class="edica-landing-section edica-landing-blog-posts">

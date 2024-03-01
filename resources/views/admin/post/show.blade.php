@@ -9,7 +9,7 @@
                         <h1 class="mr-10">
                             Просмотр категории "{{$post->title}}"
                         </h1>
-                        <a href={{ route('admin.post.edit',$post->id) }}"
+                        <a href="{{ route('admin.post.edit',$post->id) }}"
                             <i class=" fas fa-pencil-alt text-success"></i>
                         </a>
                         <form action="{{ route('admin.post.delete',$post->id) }}" method="POST">

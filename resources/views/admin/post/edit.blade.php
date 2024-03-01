@@ -50,7 +50,7 @@
                         <div class="form-group w-50">
                             <div class="text-bold">Превью</div>
                             <div class="w-25 mb-2">
-                                <img src="{{ url('storage/'. $post->preview_image)  }}" alt="preview" class="w-100">
+                                <img src="{{ url('images/'. $post->preview_image)  }}" alt="preview" class="w-100">
                             </div>
                             <div class="input-group">
                                 <div class="custom-file">
@@ -71,7 +71,7 @@
                         <div class="form-group w-50">
                             <div class="text-bold">Главное изображение</div>
                             <div class="w-25 mb-2">
-                                <img src="{{ url('storage/'. $post->main_image)  }}" alt="preview" class="w-100">
+                                <img src="{{ url('images/'. $post->main_image)  }}" alt="preview" class="w-100">
                             </div>
                             <div class="input-group">
                                 <div class="custom-file">
