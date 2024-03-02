@@ -5,7 +5,7 @@
                     <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Блог</a>
+                    <a class="nav-link" href="#">Товары</a>
                 </li>
         </div>
     </nav>
