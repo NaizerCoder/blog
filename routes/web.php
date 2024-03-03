@@ -17,7 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'App\Http\Controllers\Main'], function() {
 
-    Route::get('/', IndexContoller::class);
+    Route::get('/', IndexContoller::class)->name('main.index');
+});
+
+Route::group(['namespace' => 'App\Http\Controllers\Post', 'prefix' => 'posts'], function() {
+
+    Route::get('/', 'IndexContoller')->name('post.index');
+    Route::get('/{post}', 'ShowContoller')->name('post.show');
 });
 
 /*PERSONAL*/

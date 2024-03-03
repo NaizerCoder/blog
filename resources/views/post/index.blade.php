@@ -1,6 +1,5 @@
 @extends('layouts.main')
 @section('content')
-    <!-- В данный момент не используется. Редирект на post.index.
     <main class="blog">
         <div class="container">
             <h1 class="text-center mb-3" data-aos="fade-up">Товары</h1>
@@ -12,7 +11,7 @@
                                 <img src="{{url('images/'. $post->main_image)}}" alt="blog post">
                             </div>
                             <!-- <p class="blog-post-category">{{$post->title}}</p> -->
-                            <a href="#" class="blog-post-permalink">
+                            <a href="{{route('post.show',$post->id)}}" class="blog-post-permalink">
                                 <h6 class="blog-post-title">{{$post->title}}</h6>
                             </a>
                         </div>

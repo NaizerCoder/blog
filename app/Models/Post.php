@@ -24,7 +24,7 @@ class Post extends Model
         return $this->belongsToMany( Tag::class, 'post_tags','post_id','tag_id');
     }
 
-    /* Для информации по одному посту*/
+    /* Для информации по одному посту ?? разобраться где использовалось*/
     public function comment(){
 
         return $this->belongsToMany(User::class,'comments','post_id','user_id');
@@ -33,6 +33,11 @@ class Post extends Model
     public function likedUsers(){
 
         return $this->belongsToMany( User::class,'post_user_likes','post_id','user_id');
+    }
+
+    public function comments(){
+
+        return $this->hasMany(Comment::class,'post_id','id');
     }
 
 }
