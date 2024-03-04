@@ -7,7 +7,7 @@ use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class ShowContoller extends Controller
+class ShowController extends Controller
 {
     public function __invoke(Post $post)
     {

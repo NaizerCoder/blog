@@ -22,8 +22,15 @@ Route::group(['namespace' => 'App\Http\Controllers\Main'], function() {
 
 Route::group(['namespace' => 'App\Http\Controllers\Post', 'prefix' => 'posts'], function() {
 
-    Route::get('/', 'IndexContoller')->name('post.index');
-    Route::get('/{post}', 'ShowContoller')->name('post.show');
+    Route::get('/', 'IndexController')->name('post.index');
+    Route::get('/{post}', 'ShowController')->name('post.show');
+
+    Route::group(['namespace' => 'Comment','prefix' => '{post}/comments'],function() {
+
+        Route::post('/', 'StoreController')->name('post.comment.store');
+
+
+    });
 });
 
 /*PERSONAL*/
@@ -32,6 +39,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Personal', 'prefix'=> 'person
     Route::group(['namespace' => 'Main'],function (){
 
         Route::get('/', 'IndexController')->name('personal.main.index');
+        //Route::get('/', 'LoginController')->name('personal.main.login');
     });
 
     Route::group(['namespace' => 'Likes', 'prefix'=>'likes'],function (){
