@@ -55,7 +55,7 @@
                             <!-- END comment-list -->
                         </div>
                         @guest()
-                            <div class="text-danger">Что бы оставить комменатрий <a href="{{route('personal.main.login')}}">войдите</a></div>
+                            <div class="text-danger">Что бы оставить комменатрий <a href="{{asset('/login')}}">войдите</a></div>
                         @endguest
 
                     </section>

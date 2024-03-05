@@ -8,12 +8,23 @@
                     @foreach($posts as $post)
                         <div class="col-md-4 fetured-post blog-post mb-1" data-aos="fade-right">
                             <div class="blog-post-thumbnail-wrapper">
-                                <img src="{{url('images/'. $post->main_image)}}" alt="blog post">
+                                <a href="{{route('post.show',$post->id)}}" class="blog-post-permalink">
+                                    <img src="{{url('images/'. $post->main_image)}}" alt="blog post">
+                                </a>
                             </div>
                             <!-- <p class="blog-post-category">{{$post->title}}</p> -->
-                            <a href="{{route('post.show',$post->id)}}" class="blog-post-permalink">
+                            <div class="float-left">
                                 <h6 class="blog-post-title">{{$post->title}}</h6>
-                            </a>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <form action="/" method="post">
+                                    @csrf
+                                    <button type="submit" class="border-0 bg-transparent fle">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </form>
+                            </div>
+
                         </div>
                     @endforeach
                 </div>
