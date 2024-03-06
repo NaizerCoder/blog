@@ -9,8 +9,7 @@
                 <img src="{{asset('images/'. $post->main_image)}}" alt="featured image"
                      class="w-50 justify-content-center">
             </section>
-            <section class="post-content">
-
+            <section class="post-content" style="'margin-bottom: -10px'">
                 <div class="row">
                     <div class="col-lg-9 mx-auto">
                         {!! $post->content !!}
@@ -19,6 +18,22 @@
             </section>
             <div class="row">
                 <div class="col-lg-9 mx-auto">
+                    <section class="py-0">
+                        <form action="{{route('post.like.store',$post->id)}}" method="post">
+                            @csrf
+                            <button type="submit" class="border-0 bg-transparent fle">
+                                @auth()
+                                    @if(auth()->user()->likePosts->contains($post->id))
+                                        <i class="fas fa-heart"></i>
+                                    @else
+                                        <i class="far fa-heart"></i>
+                                    @endif
+                                @endauth
+                            </button>
+                        </form>
+                    </section>
+
+                    @if($relatedPosts->count() > 0)
                     <section class="related-posts">
                         <h2 class="section-title mb-4" data-aos="fade-up">Схожие посты</h2>
                         <div class="row">
@@ -34,9 +49,9 @@
                             @endforeach
                         </div>
                     </section>
-
+                    @endif
                     <section class="comment-list">
-                        <div class="pt-5 mt-5">
+                        <div>
                             <h3 class="mb-5 font-weight-bold">Комментарии ({{$post->comments->count()}})</h3>
                             <div class="comment-text">
                                 @foreach($post->comments as $comment)
@@ -46,10 +61,8 @@
                                             style="color:slategray; font-size:14px">{{$comment->dateCreate->diffForHumans()}}
                                             ({{$comment->dateCreate->format('d.m.Y')}})
                                         </div>
-                                        <p>{{$comment->message}}</p>
-
+                                        <p>{!! $comment->message !!}</p>
                                     </div>
-
                                 @endforeach
                             </div>
                             <!-- END comment-list -->

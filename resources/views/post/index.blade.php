@@ -17,10 +17,16 @@
                                 <h6 class="blog-post-title">{{$post->title}}</h6>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <form action="/" method="post">
+                                <form action="{{route('post.like.store',$post->id)}}" method="post">
                                     @csrf
                                     <button type="submit" class="border-0 bg-transparent fle">
-                                        <i class="far fa-heart"></i>
+                                        @auth()
+                                           @if(auth()->user()->likePosts->contains($post->id))
+                                                <i class="fas fa-heart"></i>
+                                            @else
+                                                <i class="far fa-heart"></i>
+                                           @endif
+                                        @endauth
                                     </button>
                                 </form>
                             </div>
