@@ -19,8 +19,10 @@
             <div class="row">
                 <div class="col-lg-9 mx-auto">
                     <section class="py-0">
+
                         <form action="{{route('post.like.store',$post->id)}}" method="post">
                             @csrf
+                            <span>{{$post->liked_users_count}}</span>
                             <button type="submit" class="border-0 bg-transparent fle">
                                 @auth()
                                     @if(auth()->user()->likePosts->contains($post->id))
@@ -33,6 +35,7 @@
                         </form>
                     </section>
 
+                    <!-- СХОЖИЕ ПОCТЫ -->
                     @if($relatedPosts->count() > 0)
                     <section class="related-posts">
                         <h2 class="section-title mb-4" data-aos="fade-up">Схожие посты</h2>
@@ -61,7 +64,7 @@
                                             style="color:slategray; font-size:14px">{{$comment->dateCreate->diffForHumans()}}
                                             ({{$comment->dateCreate->format('d.m.Y')}})
                                         </div>
-                                        <p>{!! $comment->message !!}</p>
+                                        <p>{{ $comment->message }}  </p>
                                     </div>
                                 @endforeach
                             </div>

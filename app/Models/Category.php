@@ -10,10 +10,11 @@ class Category extends Model
     use HasFactory;
     protected $table = "categories";
     protected $guarded = false;
+    protected $withCount = ['Post'];
 
     public function Post (){
 
-        return $this->hasMany( Post::class, 'post_id', 'id');
+        return $this->hasMany( Post::class, 'category_id', 'id');
 
     }
 }

@@ -35,6 +35,18 @@ Route::group(['namespace' => 'App\Http\Controllers\Post', 'prefix' => 'posts'], 
 
 });
 
+/*SITE CATEGORY*/
+Route::group(['namespace' => 'App\Http\Controllers\Category', 'prefix' => 'category'], function() {
+
+    Route::get('/', 'IndexController')->name('category.index');
+
+    Route::group(['prefix' => '{category}/show'],function() {
+        Route::get('/', 'ShowController')->name('category.show');
+    });
+
+});
+
+
 /*PERSONAL*/
 Route::group(['namespace' => 'App\Http\Controllers\Personal', 'prefix'=> 'personal', 'middleware' => ['auth','verified'] ], function() {
 

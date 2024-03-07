@@ -18,6 +18,7 @@
 @include('main.menu_top')
 @yield('content')
 
+
 <section class="edica-footer-banner-section">
     <div class="container">
         <div class="footer-banner" data-aos="fade-up">
@@ -30,6 +31,7 @@
         </div>
     </div>
 </section>
+
 <footer class="edica-footer" data-aos="fade-up">
     <div class="container">
         <div class="row footer-widget-area">

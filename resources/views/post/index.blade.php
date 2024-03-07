@@ -19,16 +19,25 @@
                             <div class="d-flex justify-content-end">
                                 <form action="{{route('post.like.store',$post->id)}}" method="post">
                                     @csrf
+                                    @auth()
+                                        <span>{{$post->liked_users_count}}</span>
+                                    @endauth
                                     <button type="submit" class="border-0 bg-transparent fle">
-                                        @auth()
-                                           @if(auth()->user()->likePosts->contains($post->id))
+                                    @auth()
+                                        @if(auth()->user()->likePosts->contains($post->id))
                                                 <i class="fas fa-heart"></i>
                                             @else
                                                 <i class="far fa-heart"></i>
-                                           @endif
+                                            @endif
                                         @endauth
                                     </button>
                                 </form>
+                                @guest()
+                                    <span>{{$post->liked_users_count}}</span>
+                                    <button class="border-0 bg-transparent fle">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                @endguest()
                             </div>
 
                         </div>
