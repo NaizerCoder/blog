@@ -53,7 +53,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend','prefix' => 'nv'], 
         Route::get('/', 'IndexController')->name('frontend.main.index');
     });
 
-    Route::group(['namespace' => 'Post'], function () {
+    Route::group(['namespace' => 'Post','prefix' => 'post'], function () {
         Route::get('/', 'IndexController')->name('frontend.post.index');
     });
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -39,6 +40,11 @@ class Post extends Model
     public function comments(){
 
         return $this->hasMany(Comment::class,'post_id','id');
+    }
+
+    public function getDateCreateAttribute(){
+
+        return Carbon::parse($this->created_at);
     }
 
 }
