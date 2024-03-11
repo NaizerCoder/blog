@@ -11,6 +11,7 @@ class Comment extends Model
     use HasFactory;
     protected $table = "comments";
     protected $guarded = false;
+    protected $with = ['user'];
 
     public function post(){
 
