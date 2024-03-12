@@ -54,7 +54,13 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend','prefix' => 'nv'], 
     });
 
     Route::group(['namespace' => 'Post','prefix' => 'post'], function () {
+
         Route::get('/{post}', 'ShowController')->name('frontend.post.show');
+
+        Route::group(['namespace' => 'Comment', 'prefix' => '{post}/comments'], function () {
+            Route::post('/', 'StoreController')->name('frontend.post_comment.store');
+        });
+
     });
 
 

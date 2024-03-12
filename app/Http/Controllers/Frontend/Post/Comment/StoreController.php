@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Post\Comment;
+namespace App\Http\Controllers\Frontend\Post\Comment;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\Comment\StoreRequest;
@@ -17,6 +17,6 @@ class StoreController extends Controller
         $data['post_id'] = $post->id;
 
         Comment::create($data);
-        return redirect()->route('post.show',$post->id);
+        return redirect()->route('frontend.post.show',$post->id);
     }
 }

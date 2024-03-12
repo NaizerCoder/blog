@@ -6,8 +6,7 @@
             @foreach($posts as $post)
                 <div class="col-md-12">
                     <div class="blog-entry ftco-animate d-md-flex">
-                        <a href="" class="img img-2"
-                           style="background-image: url('{{url('images/'. $post->main_image)}}');"></a>
+                        <a href="" class="img img-2" style="background-image: url('{{url('images/'. $post->main_image)}}');"></a>
                         <div class="text text-2 pl-md-4">
                             <h3 class="mb-2"><a href="{{route('frontend.post.show',$post->id)}}">{{$post->title}}</a></h3>
                             <div class="meta-wrap">
