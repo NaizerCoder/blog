@@ -1,105 +1,151 @@
-@extends('layouts.main')
+@extends('frontend.layouts.main')
 @section('content')
-    <main class="blog-post">
-        <div class="container">
-            <h1 class="edica-page-title" data-aos="fade-up">{{$post->title}}</h1>
-            <p class="edica-blog-post-meta" data-aos="fade-up" data-aos-delay="200">{{$date->translatedFormat('F')}}
-                ,{{$date->year}} • {{$date->format('H:i')}} • {{$post->comments->count()}} комментариев</p>
-            <section class="blog-post-featured-img" data-aos="fade-up" data-aos-delay="300">
-                <img src="{{asset('images/'. $post->main_image)}}" alt="featured image"
-                     class="w-50 justify-content-center">
-            </section>
-            <section class="post-content" style="'margin-bottom: -10px'">
-                <div class="row">
-                    <div class="col-lg-9 mx-auto">
-                        {!! $post->content !!}
-                    </div>
-                </div>
-            </section>
-            <div class="row">
-                <div class="col-lg-9 mx-auto">
-                    <section class="py-0">
-
-                        <form action="{{route('post.like.store',$post->id)}}" method="post">
-                            @csrf
-                            <span>{{$post->liked_users_count}}</span>
-                            <button type="submit" class="border-0 bg-transparent fle">
-                                @auth()
-                                    @if(auth()->user()->likePosts->contains($post->id))
-                                        <i class="fas fa-heart"></i>
-                                    @else
-                                        <i class="far fa-heart"></i>
-                                    @endif
-                                @endauth
-                            </button>
-                        </form>
-                    </section>
-
-                    <!-- СХОЖИЕ ПОCТЫ -->
-                    @if($relatedPosts->count() > 0)
-                    <section class="related-posts">
-                        <h2 class="section-title mb-4" data-aos="fade-up">Схожие посты</h2>
-                        <div class="row">
-                            @foreach($relatedPosts as $relatedPost)
-                                <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
-                                    <a href="{{route('post.show',$relatedPost->id)}}">
-                                        <img src="{{asset('images/'.$relatedPost->main_image)}}" alt="related post"
-                                             class="post-thumbnail">
-                                    </a>
-                                    <p class="post-category">{{$relatedPost->category->title}}</p>
-                                    <h5 class="post-title">{{$relatedPost->title}}</h5>
-                                </div>
-                            @endforeach
-                        </div>
-                    </section>
-                    @endif
-                    <section class="comment-list">
-                        <div>
-                            <h3 class="mb-5 font-weight-bold">Комментарии ({{$post->comments->count()}})</h3>
-                            <div class="comment-text">
-                                @foreach($post->comments as $comment)
-                                    <div class="comment-body">
-                                        <b>{{$comment->user->name}}</b>
-                                        <div
-                                            style="color:slategray; font-size:14px">{{$comment->dateCreate->diffForHumans()}}
-                                            ({{$comment->dateCreate->format('d.m.Y')}})
-                                        </div>
-                                        <p>{{ $comment->message }}  </p>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <!-- END comment-list -->
-                        </div>
-                        @guest()
-                            <div class="text-danger">Что бы оставить комменатрий <a href="{{asset('/login')}}">войдите</a></div>
-                        @endguest
-
-                    </section>
-
-                    @auth()
-                        <section class="comment-section">
-                            <h2 class="section-title mb-5" data-aos="fade-up">Оставьте комментарий</h2>
-                            <form action="{{route('post.comment.store',$post->id)}}" method="post">
-                                @csrf
-                                <div class="row">
-                                    <div class="form-group col-12" data-aos="fade-up">
-                                        <label for="comment" class="sr-only">Комментарии</label>
-                                        <textarea name="message" id="comment" class="form-control"
-                                                  placeholder="Напишите комментарий"
-                                                  rows="10"></textarea>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12" data-aos="fade-up">
-                                            <input type="submit" value="Отправить" class="btn btn-warning">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </section>
-                    @endauth
+    <div class="col-lg-8 px-md-5 py-2">
+        <div class="row pt-md-4">
+            <div><h1 class="mb-3">{{$post->title}}</h1></div>
+            <div class="meta">
+                <span>
+                    <i class="icon-calendar mr-2"></i>{{$date->day}} {{$date->getTranslatedMonthName('Do MMMM')}} {{$date->year}} • {{$date->format('H:i')}}
+                </span>
+                <span><i class="icon-comment2 mr-2"></i>{{$post->comments->count()}} Комментариев</span>
+            </div>
+            <p>
+                <img src="{{asset('images/'. $post->main_image)}}" alt="" class="img-fluid">
+            </p>
+            <p>
+                {!! $post->content !!}
+            </p>
+            <div class="tag-widget post-tag-container mb-5 mt-5">
+                <div class="tagcloud">
+                    @foreach($post->tags as $tag)
+                        <a href="#" class="tag-cloud-link">{{$tag->title}}</a>
+                    @endforeach
                 </div>
             </div>
-        </div>
-    </main>
+
+            <div class="about-author d-flex p-4 bg-light">
+                <div class="bio mr-5">
+                    <img src="{{asset('images/person_1.jpg')}}" alt="Image placeholder" class="img-fluid mb-4">
+                </div>
+                <div class="desc">
+                    <h3>Naizer Coder</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                </div>
+            </div>
+
+
+            <div class="pt-5 mt-5">
+                <h3 class="mb-5 font-weight-bold">6 Comments</h3>
+                <ul class="comment-list">
+                    <li class="comment">
+                        <div class="vcard bio">
+                            <img src="images/person_1.jpg" alt="Image placeholder">
+                        </div>
+                        <div class="comment-body">
+                            <h3>John Doe</h3>
+                            <div class="meta">October 03, 2018 at 2:21pm</div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                            <p><a href="#" class="reply">Reply</a></p>
+                        </div>
+                    </li>
+
+                    <li class="comment">
+                        <div class="vcard bio">
+                            <img src="images/person_1.jpg" alt="Image placeholder">
+                        </div>
+                        <div class="comment-body">
+                            <h3>John Doe</h3>
+                            <div class="meta">October 03, 2018 at 2:21pm</div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                            <p><a href="#" class="reply">Reply</a></p>
+                        </div>
+
+                        <ul class="children">
+                            <li class="comment">
+                                <div class="vcard bio">
+                                    <img src="images/person_1.jpg" alt="Image placeholder">
+                                </div>
+                                <div class="comment-body">
+                                    <h3>John Doe</h3>
+                                    <div class="meta">October 03, 2018 at 2:21pm</div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                    <p><a href="#" class="reply">Reply</a></p>
+                                </div>
+
+
+                                <ul class="children">
+                                    <li class="comment">
+                                        <div class="vcard bio">
+                                            <img src="images/person_1.jpg" alt="Image placeholder">
+                                        </div>
+                                        <div class="comment-body">
+                                            <h3>John Doe</h3>
+                                            <div class="meta">October 03, 2018 at 2:21pm</div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                            <p><a href="#" class="reply">Reply</a></p>
+                                        </div>
+
+                                        <ul class="children">
+                                            <li class="comment">
+                                                <div class="vcard bio">
+                                                    <img src="images/person_1.jpg" alt="Image placeholder">
+                                                </div>
+                                                <div class="comment-body">
+                                                    <h3>John Doe</h3>
+                                                    <div class="meta">October 03, 2018 at 2:21pm</div>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                                    <p><a href="#" class="reply">Reply</a></p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="comment">
+                        <div class="vcard bio">
+                            <img src="images/person_1.jpg" alt="Image placeholder">
+                        </div>
+                        <div class="comment-body">
+                            <h3>John Doe</h3>
+                            <div class="meta">October 03, 2018 at 2:21pm</div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                            <p><a href="#" class="reply">Reply</a></p>
+                        </div>
+                    </li>
+                </ul>
+                <!-- END comment-list -->
+
+                <div class="comment-form-wrap pt-5">
+                    <h3 class="mb-5">Leave a comment</h3>
+                    <form action="#" class="p-3 p-md-5 bg-light">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="website">Website</label>
+                            <input type="url" class="form-control" id="website">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div><!-- END-->
+    </div>
 @endsection
 

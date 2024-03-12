@@ -4,6 +4,11 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+@font-face {
+    font-family: "Academiya";
+    src: url("../fonts/Academiya.ttf");
+
+}
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -9174,7 +9179,7 @@ textarea.form-control {
   .sidebar-box h3.sidebar-heading {
     font-size: 20px;
     font-weight: normal;
-    font-style: italic;
+    #font-style: italic;
     margin-bottom: 30px; }
   @media (max-width: 767.98px) {
     .sidebar-box {
@@ -9294,3 +9299,5 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+
