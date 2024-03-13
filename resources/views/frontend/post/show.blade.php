@@ -17,8 +17,33 @@
             <p>
                 <img src="{{asset('images/'. $post->main_image)}}" alt="" class="img-fluid">
             </p>
-            <div class="">
+            <div class="mb-0">
                 {!! $post->content !!}
+            </div>
+            <!--LIKES-->
+            <div class="d-flex flex-wrap align-content-end mb-3">
+                <form action="{{route('frontend.post_like.store',$post->id)}}" method="post">
+                    @csrf
+                    @auth()
+                        <span>{{$post->liked_users_count}}</span>
+                    @endauth
+                    <button type="submit" class="border-0 bg-transparent fle">
+                        @auth()
+                            @if(auth()->user()->likePosts->contains($post->id))
+                                <i class="fas fa-heart" style="width:2px; color:#ed6ca7;"></i>
+                            @else
+                                <i class="far fa-heart"></i>
+                            @endif
+                        @endauth
+                    </button>
+                </form>
+                @guest()
+                    <span>{{$post->liked_users_count}}</span>
+                    <button class="border-0 bg-transparent fle">
+                        <i class="far fa-heart"></i>
+                    </button>
+                @endguest()
+                <!--END LIKES-->
             </div>
             <div class="tag-widget post-tag-container mb-5 mt-lg-0">
                 <div class="tagcloud">
@@ -31,8 +56,9 @@
             <div class="pt-0 mt-0">
                 <h3 class="mb-2 font-weight-bold">{{$post->comments->count()}} Комментариев</h3>
                 @guest()
-                    <div class="text-danger mb-2"><a href="{{asset('/login')}}">Войдите</a> чтобы оставить комменатрий </div>
-                @endguest
+                    <div class="text-danger mb-2"><a href="{{asset('/login')}}">Войдите</a> чтобы оставить комменатрий
+                    </div>
+                @endguest()
                 <ul class="comment-list">
                     @foreach($post->comments as $comment)
                         <li class="comment">
@@ -52,13 +78,15 @@
                 </ul>
                 <!-- END comment-list -->
                 @auth()
-                    <div class="comment-form-wrap pt-5">
+                    <div class="comment-form-wrap pt-1">
                         <h3 class="mb-0">Оставить комментарий</h3>
-                        <form action="{{route('frontend.post_comment.store',$post->id)}}" method="post" class="p-3 p-md-5 bg-light">
+                        <form action="{{route('frontend.post_comment.store',$post->id)}}" method="post"
+                              class="p-3 p-md-5 bg-light">
                             @csrf
                             <div class="form-group">
                                 <label for="message">Ваш текст:</label>
-                                <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
+                                <textarea name="message" id="message" cols="30" rows="10"
+                                          class="form-control"></textarea>
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Отправить" class="btn py-3 px-4 btn-primary">

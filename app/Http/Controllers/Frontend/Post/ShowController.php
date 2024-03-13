@@ -19,6 +19,7 @@ class ShowController extends Controller
                         ->get()
                         ->take(3);
         $categories = Category::all();
-        return view('frontend.post.show',compact('post','date','relatedPosts','categories'));
+        $likedPosts = Post::withCount('likedUsers')->orderBy('liked_users_count','DESC')->get()->take(3);
+        return view('frontend.post.show',compact('post','date','relatedPosts','categories','likedPosts'));
     }
 }

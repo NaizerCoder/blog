@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Post\Like;
+namespace App\Http\Controllers\Frontend\Post\Like;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;

@@ -17,7 +17,7 @@
                                 <h6 class="blog-post-title">{{$post->title}}</h6>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <form action="{{route('post.like.store',$post->id)}}" method="post">
+                                <form action="{{route('frontend.post_like.store',$post->id)}}" method="post">
                                     @csrf
                                     @auth()
                                         <span>{{$post->liked_users_count}}</span>

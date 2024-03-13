@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="{{asset('andrea/css/open-iconic-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('andrea/css/animate.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/all.min.css') }} ">
 
     <link rel="stylesheet" href="{{asset('andrea/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('andrea/css/owl.theme.default.min.css')}}">

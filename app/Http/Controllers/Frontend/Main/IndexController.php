@@ -11,7 +11,8 @@ class IndexController extends Controller
     {
         $posts = Post::paginate(3);
         $categories = Category::all();
-        //dd($posts);
-        return view('frontend.main.index',compact('posts','categories'));
+        $likedPosts = Post::withCount('likedUsers')->orderBy('liked_users_count','DESC')->get()->take(3);
+        //dd($likedPosts);
+        return view('frontend.main.index',compact('posts','categories','likedPosts'));
     }
 }

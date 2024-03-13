@@ -61,6 +61,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend','prefix' => 'nv'], 
             Route::post('/', 'StoreController')->name('frontend.post_comment.store');
         });
 
+        Route::group(['namespace' => 'Like', 'prefix' => '{post}/likes'], function () {
+            Route::post('/', 'StoreController')->name('frontend.post_like.store');
+        });
+
     });
 
 
