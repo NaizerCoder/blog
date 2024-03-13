@@ -36,7 +36,6 @@
             <div class="container">
                 <div class="row d-flex">
                     @yield('content')
-                    @include('frontend.main.right')
                 </div>
             </div>
         </section>

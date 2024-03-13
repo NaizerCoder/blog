@@ -12,6 +12,6 @@ class IndexController extends Controller
         $posts = Post::paginate(3);
         $categories = Category::all();
         //dd($posts);
-        return view('frontend.layouts.main',compact('posts','categories'));
+        return view('frontend.main.index',compact('posts','categories'));
     }
 }

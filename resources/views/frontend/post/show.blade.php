@@ -69,5 +69,6 @@
             </div>
         </div><!-- END-->
     </div>
+    @include('frontend.main.right')
 @endsection
 

@@ -1,11 +1,10 @@
 <div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
     <div class="sidebar-box ftco-animate">
-        <h3 class="sidebar-heading">Categories</h3>
+        <h3 class="sidebar-heading">Категории</h3>
         <ul class="categories">
             @foreach($categories as $category)
-                <li><a href="#">{{$category->title}} <span>(6)</span></a></li>
+                <li><a href="#">{{$category->title}} <span>({{$category->post->count()}})</span></a></li>
             @endforeach
-
         </ul>
     </div>
 
