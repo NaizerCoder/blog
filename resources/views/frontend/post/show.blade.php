@@ -1,4 +1,9 @@
 @extends('frontend.layouts.main')
+
+@section('title')
+    <title>{{$post->title}} | Travel Blog</title>
+@endsection
+
 @section('content')
     <div class="col-lg-8 px-md-5 py-2">
         <div class="row pt-md-4 d-block">
@@ -23,20 +28,7 @@
                 </div>
             </div>
 
-            <div class="about-author d-flex p-4 bg-light">
-                <div class="bio mr-5">
-                    <img src="{{asset('andrea/images/person_1.jpg')}}" alt="Image placeholder" class="img-fluid mb-4">
-                </div>
-                <div class="desc">
-                    <h3>Администратор</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus
-                        voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur
-                        similique, inventore eos fugit cupiditate numquam!</p>
-                </div>
-            </div>
-
-
-            <div class="pt-5 mt-5">
+            <div class="pt-0 mt-0">
                 <h3 class="mb-2 font-weight-bold">{{$post->comments->count()}} Комментариев</h3>
                 @guest()
                     <div class="text-danger mb-2"><a href="{{asset('/login')}}">Войдите</a> чтобы оставить комменатрий </div>
@@ -45,7 +37,7 @@
                     @foreach($post->comments as $comment)
                         <li class="comment">
                             <div class="vcard bio">
-                                <img src="{{asset('andrea/images/person_2.jpg')}}" alt="Image placeholder">
+                                <img src="{{asset('andrea/images/noname.jpg')}}" alt="Image placeholder">
                             </div>
                             <div class="comment-body">
                                 <h3>{{$comment->user->name}}</h3>
@@ -61,7 +53,7 @@
                 <!-- END comment-list -->
                 @auth()
                     <div class="comment-form-wrap pt-5">
-                        <h3 class="mb-5">Оставить комментарий</h3>
+                        <h3 class="mb-0">Оставить комментарий</h3>
                         <form action="{{route('frontend.post_comment.store',$post->id)}}" method="post" class="p-3 p-md-5 bg-light">
                             @csrf
                             <div class="form-group">

@@ -1,12 +1,16 @@
 @extends('frontend.layouts.main')
 
+@section('title')
+    <title>Travel Blog</title>
+@endsection
+
 @section('content')
     <div class="col-xl-8 py-5 px-md-5">
         <div class="row pt-md-4">
             @foreach($posts as $post)
                 <div class="col-md-12">
                     <div class="blog-entry ftco-animate d-md-flex">
-                        <a href="" class="img img-2" style="background-image: url('{{url('images/'. $post->main_image)}}');"></a>
+                        <a href="{{route('frontend.post.show',$post->id)}}" class="img img-2" style="background-image: url('{{url('images/'. $post->main_image)}}');"></a>
                         <div class="text text-2 pl-md-4">
                             <h3 class="mb-2"><a href="{{route('frontend.post.show',$post->id)}}">{{$post->title}}</a></h3>
                             <div class="meta-wrap">
@@ -19,7 +23,7 @@
                             <p class="mb-4">
                                 {{ mb_strimwidth(strip_tags($post->content), 0, 120, '...') }}
                             </p>
-                            <p><a href="#" class="btn-custom">Читать далее <span
+                            <p><a href="{{route('frontend.post.show',$post->id)}}" class="btn-custom">Читать далее <span
                                         class="ion-ios-arrow-forward"></span></a></p>
                         </div>
                     </div>
@@ -35,4 +39,8 @@
         </div>
     </div>
 @endsection
+
+
+
+
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Travel Blog</title>
+    @yield("title")
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="{{asset('andrea/css/style.css')}}">
 </head>
 <body>
-
 <div id="colorlib-page">
     <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
     @include('frontend.main.left')
