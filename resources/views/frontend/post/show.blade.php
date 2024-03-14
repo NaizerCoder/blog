@@ -48,7 +48,7 @@
             <div class="tag-widget post-tag-container mb-5 mt-lg-0">
                 <div class="tagcloud">
                     @foreach($post->tags as $tag)
-                        <a href="#" class="tag-cloud-link">{{$tag->title}}</a>
+                        <a href="{{route('frontend.tag.show',$tag->id)}}" class="tag-cloud-link">{{$tag->title}}</a>
                     @endforeach
                 </div>
             </div>

@@ -10,6 +10,6 @@ class IndexContoller extends Controller
 {
     public function __invoke()
     {
-        return redirect()->route('post.index');
+        return redirect()->route('frontend.main.index');
     }
 }

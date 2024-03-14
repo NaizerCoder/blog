@@ -36,14 +36,17 @@
     <nav id="colorlib-main-menu" role="navigation">
         <ul>
             <li class="colorlib-active"><a href="/">Лента</a></li>
-            <li><a href="contact.html">Контакты</a></li>
             <li><a href="/personal" target="_blank">Личный кабинет</a></li>
+            <li><a href="#">Релиз</a></li>
+            @guest()
+                <li><i class="fas fa-sign-in-alt"></i><a href="/login"> Войти</a></li>
+            @endguest()
         </ul>
     </nav>
 
     <div class="colorlib-footer">
         <h1 id="colorlib-logo" class="mb-5"><a href="{{route('frontend.main.index')}}" class="d-inline"
-                                               style="background-image: url({{asset('andrea/images/bg_1.jpg')}})">Travel<br>Blog</a>
+                                               style="background-image: url({{asset('andrea/images/bg-5.jpg')}})">Travel<br>Blog</a>
         </h1>
         <p class="pfooter"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             NaizerCoder &copy;<script>document.write(new Date().getFullYear());</script>

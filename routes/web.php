@@ -47,7 +47,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Category', 'prefix' => 'categ
 });
 
 /*FRONTEND*/
-Route::group(['namespace' => 'App\Http\Controllers\Frontend','prefix' => 'nv'], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
 
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', 'IndexController')->name('frontend.main.index');
@@ -67,6 +67,13 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend','prefix' => 'nv'], 
 
     });
 
+    Route::group(['namespace' => 'Category', 'prefix' => 'cat/{category}'], function () {
+        Route::get('/', 'ShowController')->name('frontend.category.show');
+    });
+
+    Route::group(['namespace' => 'Tag', 'prefix' => 'tag/{tag}'], function () {
+        Route::get('/', 'ShowController')->name('frontend.tag.show');
+    });
 
 
 });
